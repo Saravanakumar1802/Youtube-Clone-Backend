@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 // middlewares
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://youtube-clone-saravana.netlify.app",
   credentials: true,
   methods: "GET,POST,PUT,DELETE",
 }));
