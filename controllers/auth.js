@@ -80,10 +80,15 @@ const signupUser = async (req, res, next) => {
 
     const token = generateToken(user._id);
 
-    res.cookie("access_token", token).status(200).json({
+    res.cookie("access_token", token, {
+      sameSite: "none",
+      secure: true,
+    }).status(200).json({
+
       success: true,
       user,
     });
+    
   } catch (error) {
     console.log(error);
     res.status(400);
@@ -114,10 +119,14 @@ const googleAuth = async (req, res, next) => {
       });
       const token = generateToken(newUserFromGoogle._id);
 
-      res.cookie("access_token", token).status(200).json({
-        success: true,
-        user: newUserFromGoogle,
-      });
+      res.cookie("access_token", token,
+        {
+          sameSite: "none",
+          secure: true,
+        }).status(200).json({
+          success: true,
+          user: newUserFromGoogle,
+        });
     }
   } catch (error) {
     console.log(error);
